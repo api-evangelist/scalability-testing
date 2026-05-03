@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/scalability-testing/main/json-schema/scalability-testing-test-result-schema.json",
+  "title": "LoadTestResult",
+  "description": "Schema for aggregated results from a load or scalability test run",
+  "type": "object",
+  "properties": {
+    "testRunId": {
+      "type": "string",
+      "description": "Unique identifier for this test run",
+      "example": "run_20260502_001"
+    },
+    "testName": {
+      "type": "string",
+      "description": "Name of the load test scenario",
+      "example": "API Gateway Peak Load Test"
+    },
+    "tool": {
+      "type": "string",
+      "description": "Load testing tool used to execute the test",
+      "enum": ["JMeter", "k6", "Gatling", "Locust", "Artillery", "Vegeta", "Wrk", "Azure Load Testing", "BlazeMeter"],
+      "example": "k6"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the test started",
+      "example": "2026-05-02T10:00:00.000Z"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the test completed",
+      "example": "2026-05-02T10:30:00.000Z"
+    },
+    "durationSeconds": {
+      "type": "integer",
+      "description": "Total test duration in seconds",
+      "minimum": 1,
+      "example": 1800
+    },
+    "configuration": {
+      "type": "object",
+      "description": "Test configuration parameters",
+      "properties": {
+        "virtualUsers": {
+          "type": "integer",
+          "description": "Peak number of concurrent virtual users (VUs) simulated",
+          "minimum": 1,
+          "example": 1000
+        },
+        "rampUpSeconds": {
+          "type": "integer",
+          "description": "Time in seconds to ramp up to peak virtual users",
+          "example": 300
+        },
+        "targetUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Base URL of the system under test",
+          "example": "https://api.example.com"
+        },
+        "testType": {
+          "type": "string",
+          "description": "Type of scalability/performance test",
+          "enum": ["Load Test", "Stress Test", "Spike Test", "Soak Test", "Capacity Test", "Breakpoint Test"],
+          "example": "Load Test"
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Aggregated performance metrics from the test run",
+      "properties": {
+        "totalRequests": {
+          "type": "integer",
+          "description": "Total number of HTTP requests made during the test",
+          "example": 540000
+        },
+        "requestsPerSecond": {
+          "type": "number",
+          "description": "Average requests per second (throughput)",
+          "example": 300.0
+        },
+        "responseTime": {
+          "type": "object",
+          "description": "Response time statistics in milliseconds",
+          "properties": {
+            "min": {"type": "number", "description": "Minimum response time (ms)"},
+            "max": {"type": "number", "description": "Maximum response time (ms)"},
+            "mean": {"type": "number", "description": "Mean (average) response time (ms)"},
+            "median": {"type": "number", "description": "50th percentile response time (ms)"},
+            "p90": {"type": "number", "description": "90th percentile response time (ms)"},
+            "p95": {"type": "number", "description": "95th percentile response time (ms)"},
+            "p99": {"type": "number", "description": "99th percentile response time (ms)"}
+          }
+        },
+        "errorRate": {
+          "type": "number",
+          "description": "Percentage of requests that resulted in errors (4xx/5xx)",
+          "minimum": 0,
+          "maximum": 100,
+          "example": 0.5
+        },
+        "errorCount": {
+          "type": "integer",
+          "description": "Total number of error responses during the test",
+          "example": 2700
+        },
+        "apdex": {
+          "type": "number",
+          "description": "Application Performance Index score (0.0-1.0). Based on configurable satisfied/tolerating thresholds.",
+          "minimum": 0,
+          "maximum": 1,
+          "example": 0.87
+        },
+        "bandwidthMbps": {
+          "type": "number",
+          "description": "Average network bandwidth consumed (Mbps)",
+          "example": 45.2
+        }
+      }
+    },
+    "slaViolations": {
+      "type": "array",
+      "description": "List of service-level agreement thresholds that were violated",
+      "items": {
+        "type": "object",
+        "properties": {
+          "metric": {"type": "string", "description": "Metric name (e.g., p95_response_time)"},
+          "threshold": {"type": "number", "description": "SLA threshold value"},
+          "actual": {"type": "number", "description": "Actual measured value"},
+          "unit": {"type": "string", "description": "Unit of measurement"}
+        }
+      }
+    },
+    "passed": {
+      "type": "boolean",
+      "description": "Whether the test passed all configured SLA thresholds",
+      "example": true
+    }
+  },
+  "required": ["testRunId", "testName", "tool", "startTime", "durationSeconds", "configuration", "metrics"],
+  "additionalProperties": false
+}

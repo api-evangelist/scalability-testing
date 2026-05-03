@@ -1,0 +1,48 @@
+{
+  "description": "Example k6 cloud API test result payload for a load test against an API gateway",
+  "scenario": "Retrieving test results from Grafana k6 Cloud API after a 30-minute load test",
+  "request": {
+    "method": "GET",
+    "url": "https://api.k6.io/v3/tests/{testRunId}/results",
+    "headers": {
+      "Authorization": "Token {{K6_CLOUD_API_TOKEN}}",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "testRunId": "run_20260502_001",
+      "testName": "API Gateway Peak Load Test",
+      "tool": "k6",
+      "startTime": "2026-05-02T10:00:00.000Z",
+      "endTime": "2026-05-02T10:30:00.000Z",
+      "durationSeconds": 1800,
+      "configuration": {
+        "virtualUsers": 1000,
+        "rampUpSeconds": 300,
+        "targetUrl": "https://api.example.com",
+        "testType": "Load Test"
+      },
+      "metrics": {
+        "totalRequests": 540000,
+        "requestsPerSecond": 300.0,
+        "responseTime": {
+          "min": 12,
+          "max": 4892,
+          "mean": 185,
+          "median": 142,
+          "p90": 320,
+          "p95": 480,
+          "p99": 1250
+        },
+        "errorRate": 0.5,
+        "errorCount": 2700,
+        "apdex": 0.87,
+        "bandwidthMbps": 45.2
+      },
+      "slaViolations": [],
+      "passed": true
+    }
+  }
+}

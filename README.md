@@ -1,102 +1,131 @@
-# Scalability Testing API (scalability-testing)
-A collection of APIs for performing scalability and load testing
+# Scalability Testing
 
-**URL:** [Visit APIs.json URL](https://scalability-testing.example.com)
+A collection of tools, frameworks, APIs, and datasets for performing scalability and load testing of web services, APIs, and distributed systems. Scalability testing evaluates how a system performs as load increases, identifying bottlenecks, capacity limits, and performance degradation points. Key tools include Apache JMeter, k6, Gatling, Locust, and cloud platforms like Azure Load Testing and BlazeMeter.
 
-## Tags:
+**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/scalability-testing/refs/heads/main/apis.yml)
 
- - Scalability, Load Testing, Performance Testing, Stress Testing, API Testing, Monitoring, Analytics
+- **k6 Documentation:** https://grafana.com/docs/grafana-cloud/testing/k6/
+- **JMeter Documentation:** https://jmeter.apache.org/usermanual/
+- **Locust Documentation:** https://docs.locust.io/
+
+## Scope
+
+- **Type:** Index
+- **Position:** Consuming
+- **Access:** 3rd-Party
+
+## Tags
+
+Scalability, Load Testing, Performance Testing, Stress Testing, API Testing, Monitoring, Analytics
 
 ## Timestamps
 
-- **Created:** 2024-01-15 
-- **Modified:** 2024-01-15 
+- **Created:** 2024-01-15
+- **Modified:** 2026-05-02
 
-## APIs
+## APIs and Tools
 
-### Load Testing API
-API for creating and managing load tests to evaluate system performance under various load conditions
+### Grafana k6 Cloud API
 
-**Human URL:** [https://scalability-testing.example.com/load-testing](https://scalability-testing.example.com/load-testing)
+The Grafana k6 Cloud REST API provides programmatic access to run and manage load tests. k6 is an open-source load testing tool using JavaScript/TypeScript test scripts.
 
+**Human URL:** https://grafana.com/docs/grafana-cloud/testing/k6/
 
-#### Tags:
+**Tags:** k6, Load Testing, Performance Testing
 
- - Load Testing, Performance, Testing
+**Properties**
 
-#### Properties
+- [Documentation](https://grafana.com/docs/grafana-cloud/testing/k6/reference/rest-api/)
 
-- [Documentation](https://scalability-testing.example.com/docs/load-testing)
-- [OpenAPI](https://api.scalability-testing.example.com/v1/load/openapi.json)
-- [Swagger](https://api.scalability-testing.example.com/v1/load/swagger)
-- [Authentication](https://scalability-testing.example.com/docs/authentication)
+### BlazeMeter API
 
-### Stress Testing API
-API for conducting stress tests to determine breaking points and system limits
+The BlazeMeter REST API enables programmatic access to the BlazeMeter cloud load testing platform supporting JMeter, Gatling, Locust, and Selenium.
 
-**Human URL:** [https://scalability-testing.example.com/stress-testing](https://scalability-testing.example.com/stress-testing)
+**Human URL:** https://guide.blazemeter.com/hc/en-us/categories/200698715-BlazeMeter-API
 
+**Tags:** BlazeMeter, JMeter, Load Testing
 
-#### Tags:
+### Azure Load Testing API
 
- - Stress Testing, Performance, Limits
+Azure's fully managed cloud load testing service based on Apache JMeter, integrated with Azure DevOps and GitHub Actions.
 
-#### Properties
+**Human URL:** https://learn.microsoft.com/en-us/azure/load-testing/
 
-- [Documentation](https://scalability-testing.example.com/docs/stress-testing)
-- [OpenAPI](https://api.scalability-testing.example.com/v1/stress/openapi.json)
-- [Pricing](https://scalability-testing.example.com/pricing)
+**Tags:** Azure, Cloud Load Testing, JMeter, Microsoft
 
-### Metrics & Analytics API
-API for retrieving test results, performance metrics, and scalability analytics
+**Properties**
 
-**Human URL:** [https://scalability-testing.example.com/metrics](https://scalability-testing.example.com/metrics)
+- [Documentation](https://learn.microsoft.com/en-us/azure/load-testing/)
+- [OpenAPI](https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/loadtestservice.json)
 
+### Apache JMeter
 
-#### Tags:
+The most widely used open-source load testing tool supporting HTTP, JDBC, JMS, LDAP, SOAP, and REST protocols.
 
- - Metrics, Analytics, Reporting, Performance
+**Human URL:** https://jmeter.apache.org/
 
-#### Properties
+**Tags:** JMeter, Load Testing, Open Source, Apache
 
-- [Documentation](https://scalability-testing.example.com/docs/metrics)
-- [OpenAPI](https://api.scalability-testing.example.com/v1/metrics/openapi.json)
-- [Dashboard](https://dashboard.scalability-testing.example.com)
+**Properties**
 
-### Resource Monitoring API
-API for monitoring system resources during scalability tests including CPU, memory, and network usage
+- [Documentation](https://jmeter.apache.org/usermanual/index.html)
+- [GitHub](https://github.com/apache/jmeter)
 
-**Human URL:** [https://scalability-testing.example.com/monitoring](https://scalability-testing.example.com/monitoring)
+### Locust
 
+A scalable distributed load testing framework written in Python with a REST API for CI/CD integration.
 
-#### Tags:
+**Human URL:** https://locust.io/
 
- - Monitoring, Resources, Real-time
+**Tags:** Load Testing, Locust, Open Source, Python
 
-#### Properties
+**Properties**
 
-- [Documentation](https://scalability-testing.example.com/docs/monitoring)
-- [OpenAPI](https://api.scalability-testing.example.com/v1/monitoring/openapi.json)
-- [WebSocket](wss://api.scalability-testing.example.com/v1/monitoring/stream)
+- [Documentation](https://docs.locust.io/en/stable/)
+- [GitHub](https://github.com/locustio/locust)
 
-### Test Configuration API
-API for managing test configurations, scenarios, and user load patterns
+### Gatling
 
-**Human URL:** [https://scalability-testing.example.com/configuration](https://scalability-testing.example.com/configuration)
+A high-performance open-source load testing framework using a Scala/Java/Kotlin DSL built on Akka and Netty.
 
+**Human URL:** https://gatling.io/
 
-#### Tags:
+**Tags:** Gatling, Load Testing, Open Source, Java, Scala
 
- - Configuration, Test Scenarios, Management
+**Properties**
 
-#### Properties
+- [Documentation](https://docs.gatling.io/)
+- [GitHub](https://github.com/gatling/gatling)
 
-- [Documentation](https://scalability-testing.example.com/docs/configuration)
-- [OpenAPI](https://api.scalability-testing.example.com/v1/config/openapi.json)
-- [Examples](https://scalability-testing.example.com/docs/examples)
+## JSON Schema
+
+- [json-schema/scalability-testing-test-result-schema.json](json-schema/scalability-testing-test-result-schema.json) — Schema for aggregated load test results including configuration, performance metrics (p50, p90, p95, p99), error rates, and SLA validation
+
+## JSON Structure
+
+- [json-structure/scalability-testing-test-result-structure.json](json-structure/scalability-testing-test-result-structure.json) — Field-level documentation for the LoadTestResult entity structure
+
+## JSON-LD
+
+- [json-ld/scalability-testing-context.jsonld](json-ld/scalability-testing-context.jsonld) — Linked data context mapping scalability testing concepts (LoadTest, VirtualUser, Metric, Percentile) to schema.org vocabulary
+
+## Examples
+
+- [examples/scalability-testing-k6-test-result-example.json](examples/scalability-testing-k6-test-result-example.json) — Example k6 Cloud API test result for a 30-minute, 1000 VU load test with full metrics
+
+## Vocabulary
+
+- [vocabulary/scalability-testing-vocabulary.yml](vocabulary/scalability-testing-vocabulary.yml) — Comprehensive vocabulary covering test types (Load, Stress, Spike, Soak), performance metrics (throughput, Apdex, percentiles, error rate), tools (k6, JMeter, Gatling, Locust), and testing methodologies
+
+## Common Properties
+
+- [k6 Open Source](https://github.com/grafana/k6)
+- [Apache JMeter](https://github.com/apache/jmeter)
+- [Locust](https://github.com/locustio/locust)
+- [Gatling](https://github.com/gatling/gatling)
+- [k6 Documentation](https://grafana.com/docs/grafana-cloud/testing/k6/)
 
 ## Maintainers
 
-**FN:** Scalability Testing Team
-
-**Email:** team@scalability-testing.example.com
+**FN:** Kin Lane  
+**Email:** kin@apievangelist.com

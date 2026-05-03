@@ -1,0 +1,102 @@
+{
+  "name": "LoadTestResult",
+  "description": "Structure of a scalability test result record including configuration, performance metrics, and SLA validation",
+  "type": "object",
+  "fields": [
+    {
+      "name": "testRunId",
+      "type": "string",
+      "description": "Unique identifier for this specific test execution",
+      "required": true,
+      "example": "run_20260502_001"
+    },
+    {
+      "name": "testName",
+      "type": "string",
+      "description": "Human-readable name for the test scenario",
+      "required": true,
+      "example": "API Gateway Peak Load Test"
+    },
+    {
+      "name": "tool",
+      "type": "string",
+      "description": "Load testing tool: JMeter, k6, Gatling, Locust, Artillery, Vegeta, etc.",
+      "required": true,
+      "example": "k6"
+    },
+    {
+      "name": "startTime",
+      "type": "datetime",
+      "description": "ISO 8601 UTC timestamp when the test started",
+      "required": true,
+      "example": "2026-05-02T10:00:00.000Z"
+    },
+    {
+      "name": "endTime",
+      "type": "datetime",
+      "description": "ISO 8601 UTC timestamp when the test completed",
+      "required": false,
+      "example": "2026-05-02T10:30:00.000Z"
+    },
+    {
+      "name": "durationSeconds",
+      "type": "integer",
+      "description": "Total test duration in seconds",
+      "required": true,
+      "example": 1800
+    },
+    {
+      "name": "configuration",
+      "type": "object",
+      "description": "Test execution configuration",
+      "required": true,
+      "nestedFields": [
+        {"name": "virtualUsers", "type": "integer", "description": "Peak number of concurrent virtual users"},
+        {"name": "rampUpSeconds", "type": "integer", "description": "Ramp-up period in seconds"},
+        {"name": "targetUrl", "type": "string", "description": "Base URL of the system under test"},
+        {"name": "testType", "type": "string", "description": "Load Test, Stress Test, Spike Test, Soak Test, Capacity Test"}
+      ]
+    },
+    {
+      "name": "metrics",
+      "type": "object",
+      "description": "Aggregated performance metrics from the test",
+      "required": true,
+      "nestedFields": [
+        {"name": "totalRequests", "type": "integer", "description": "Total HTTP requests executed"},
+        {"name": "requestsPerSecond", "type": "number", "description": "Average throughput in requests/second"},
+        {"name": "responseTime.min", "type": "number", "description": "Minimum response time in ms"},
+        {"name": "responseTime.mean", "type": "number", "description": "Mean response time in ms"},
+        {"name": "responseTime.median", "type": "number", "description": "50th percentile response time in ms"},
+        {"name": "responseTime.p90", "type": "number", "description": "90th percentile response time in ms"},
+        {"name": "responseTime.p95", "type": "number", "description": "95th percentile response time in ms"},
+        {"name": "responseTime.p99", "type": "number", "description": "99th percentile response time in ms"},
+        {"name": "responseTime.max", "type": "number", "description": "Maximum response time in ms"},
+        {"name": "errorRate", "type": "number", "description": "Percentage of error responses (0-100)"},
+        {"name": "errorCount", "type": "integer", "description": "Total number of error responses"},
+        {"name": "apdex", "type": "number", "description": "Apdex score 0.0-1.0 (Application Performance Index)"},
+        {"name": "bandwidthMbps", "type": "number", "description": "Average network bandwidth in Mbps"}
+      ]
+    },
+    {
+      "name": "slaViolations",
+      "type": "array",
+      "description": "SLA thresholds that were breached during the test",
+      "required": false,
+      "nestedFields": [
+        {"name": "metric", "type": "string", "description": "Metric name that violated SLA"},
+        {"name": "threshold", "type": "number", "description": "Configured SLA threshold"},
+        {"name": "actual", "type": "number", "description": "Measured value"},
+        {"name": "unit", "type": "string", "description": "Unit (ms, %, req/s)"}
+      ]
+    },
+    {
+      "name": "passed",
+      "type": "boolean",
+      "description": "Whether all SLA thresholds were met",
+      "required": false,
+      "example": true
+    }
+  ],
+  "source": "json-schema/scalability-testing-test-result-schema.json"
+}

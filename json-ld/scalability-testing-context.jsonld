@@ -1,0 +1,114 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "perf": "https://schema.performance-testing.org/ontology#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "LoadTest": {
+      "@id": "perf:LoadTest",
+      "@type": "@id",
+      "comment": "A test that simulates user load on a system to evaluate performance"
+    },
+    "StressTest": {
+      "@id": "perf:StressTest",
+      "@type": "@id",
+      "comment": "A test that pushes a system beyond normal operating capacity to find breaking points"
+    },
+    "SpikeTest": {
+      "@id": "perf:SpikeTest",
+      "@type": "@id",
+      "comment": "A test simulating sudden sharp increases in user load"
+    },
+    "SoakTest": {
+      "@id": "perf:SoakTest",
+      "@type": "@id",
+      "comment": "A long-duration test to identify memory leaks and degradation over time"
+    },
+    "VirtualUser": {
+      "@id": "perf:VirtualUser",
+      "@type": "@id",
+      "comment": "A simulated user thread executing a test scenario"
+    },
+    "TestScenario": {
+      "@id": "perf:TestScenario",
+      "@type": "@id",
+      "comment": "A defined sequence of actions simulated by virtual users"
+    },
+    "TestResult": {
+      "@id": "perf:TestResult",
+      "@type": "@id",
+      "comment": "Aggregated performance metrics from a completed load test"
+    },
+    "Metric": {
+      "@id": "perf:Metric",
+      "@type": "@id",
+      "comment": "A measured performance indicator from a load test"
+    },
+    "Percentile": {
+      "@id": "perf:Percentile",
+      "@type": "@id",
+      "comment": "A statistical measure showing the value below which a given percentage of observations fall"
+    },
+    "Bottleneck": {
+      "@id": "perf:Bottleneck",
+      "@type": "@id",
+      "comment": "A system constraint that limits overall throughput or scalability"
+    },
+
+    "virtualUsers": {
+      "@id": "perf:virtualUsers",
+      "@type": "xsd:integer"
+    },
+    "duration": {
+      "@id": "perf:duration",
+      "@type": "xsd:duration"
+    },
+    "rampUpTime": {
+      "@id": "perf:rampUpTime",
+      "@type": "xsd:duration"
+    },
+    "requestsPerSecond": {
+      "@id": "perf:requestsPerSecond",
+      "@type": "xsd:decimal"
+    },
+    "responseTimeMs": {
+      "@id": "perf:responseTimeMs",
+      "@type": "xsd:decimal"
+    },
+    "p50": {
+      "@id": "perf:p50",
+      "@type": "xsd:decimal"
+    },
+    "p90": {
+      "@id": "perf:p90",
+      "@type": "xsd:decimal"
+    },
+    "p95": {
+      "@id": "perf:p95",
+      "@type": "xsd:decimal"
+    },
+    "p99": {
+      "@id": "perf:p99",
+      "@type": "xsd:decimal"
+    },
+    "errorRate": {
+      "@id": "perf:errorRate",
+      "@type": "xsd:decimal"
+    },
+    "throughput": {
+      "@id": "perf:throughput",
+      "@type": "xsd:decimal"
+    },
+    "apdex": {
+      "@id": "perf:apdex",
+      "@type": "xsd:decimal"
+    },
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "startTime": "schema:startTime",
+    "endTime": "schema:endTime"
+  }
+}

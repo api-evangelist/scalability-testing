@@ -1,0 +1,254 @@
+vocabulary:
+  name: Scalability Testing Vocabulary
+  description: >-
+    Domain vocabulary for scalability and performance testing of web services,
+    APIs, and distributed systems. Covers test types, key performance metrics,
+    testing methodologies, tools, and interpretation of results for engineering
+    teams evaluating system capacity and resilience.
+  version: "1.0.0"
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+domains:
+  - name: Test Types
+    description: Classification of performance and scalability test categories
+    terms:
+      - term: Load Test
+        definition: >-
+          A test that applies a specific, predefined load level to a system
+          to verify it meets performance requirements under expected operating
+          conditions. Typically simulates peak normal traffic with a defined
+          number of concurrent virtual users over a sustained period.
+        related: [Stress Test, Soak Test, Virtual Users]
+
+      - term: Stress Test
+        definition: >-
+          A test that increases load beyond normal operating capacity to find
+          the system's breaking point and behavior under extreme conditions.
+          Identifies the maximum throughput before errors or response time
+          degradation becomes unacceptable.
+        related: [Load Test, Breaking Point, Capacity]
+
+      - term: Spike Test
+        definition: >-
+          A test that simulates sudden, short-duration surges in traffic to
+          evaluate how quickly a system can scale up and recover. Validates
+          auto-scaling policies and elastic infrastructure behavior.
+        related: [Load Test, Auto-Scaling]
+
+      - term: Soak Test
+        definition: >-
+          A long-duration test (hours or days) at a sustained load level designed
+          to identify memory leaks, connection pool exhaustion, disk space issues,
+          and gradual performance degradation that only appear over time.
+          Also called endurance testing.
+        aliases: [Endurance Test]
+        related: [Memory Leak, Load Test]
+
+      - term: Capacity Test
+        definition: >-
+          A test designed to determine the maximum number of concurrent users
+          or requests per second a system can handle while maintaining acceptable
+          performance SLAs. Results inform infrastructure sizing decisions.
+        related: [Stress Test, Throughput, SLA]
+
+      - term: Breakpoint Test
+        definition: >-
+          A test that incrementally increases load until system failure or SLA
+          breach to precisely identify the capacity ceiling. Similar to stress
+          testing but more methodical in its step-wise load increase.
+
+      - term: Smoke Test
+        definition: >-
+          A minimal load test (1-5 virtual users) run before a full load test
+          to verify the test script and target system are functional. Catches
+          configuration errors before committing to a full test run.
+
+  - name: Performance Metrics
+    description: Key measurements used to evaluate system performance under load
+    terms:
+      - term: Response Time
+        definition: >-
+          The elapsed time between a client sending a request and receiving
+          the complete response. Usually measured in milliseconds. The primary
+          user-experience metric in performance testing.
+        unit: milliseconds
+        related: [Latency, Percentile]
+
+      - term: Latency
+        definition: >-
+          The network and processing delay component of response time, excluding
+          data transfer time. Often used interchangeably with response time
+          but more precisely refers to the time-to-first-byte.
+        unit: milliseconds
+
+      - term: Throughput
+        definition: >-
+          The number of requests successfully processed per unit of time,
+          measured in requests per second (RPS) or transactions per second (TPS).
+          The primary capacity metric in performance testing.
+        unit: requests/second
+        aliases: [RPS, TPS, QPS]
+
+      - term: Percentile (p90, p95, p99)
+        definition: >-
+          A statistical threshold indicating the response time value below which
+          a given percentage of requests fall. p95=480ms means 95% of requests
+          completed within 480ms. p99 captures tail latency affecting the
+          worst-affected users. SLAs are typically defined on p95 or p99.
+        related: [Response Time, SLA, Tail Latency]
+
+      - term: Error Rate
+        definition: >-
+          The percentage of HTTP requests that result in error responses (4xx
+          or 5xx status codes) or timeouts during a load test. A rising error
+          rate under load typically indicates the system is approaching capacity.
+        unit: percentage
+
+      - term: Apdex
+        definition: >-
+          Application Performance Index — an open standard for measuring user
+          satisfaction with response time. Requests are classified as Satisfied
+          (< T ms), Tolerating (< 4T ms), or Frustrated (> 4T ms) where T is
+          a configurable threshold. Score ranges 0.0 (all frustrated) to 1.0 (all satisfied).
+        formula: "(Satisfied + Tolerating/2) / Total Requests"
+        related: [Response Time, SLA]
+
+      - term: Concurrent Users
+        definition: >-
+          The number of virtual users actively making requests at the same
+          time during a load test. Also called concurrent virtual users (VUs).
+          Determines the level of parallelism simulated.
+        aliases: [Virtual Users, VUs]
+
+      - term: Ramp-Up
+        definition: >-
+          The period at the start of a load test during which virtual users
+          are gradually added to the target load level. Avoids instant load
+          spikes and allows monitoring of how performance degrades as load increases.
+
+      - term: Think Time
+        definition: >-
+          The simulated delay between requests within a user session, mimicking
+          the time a real user takes to read a page, fill a form, or make a
+          decision before the next action. Affects effective throughput.
+
+      - term: Tail Latency
+        definition: >-
+          High-percentile (p99, p99.9) response times experienced by a small
+          fraction of requests. Tail latency often indicates lock contention,
+          garbage collection pauses, or resource exhaustion issues hidden in
+          average response times.
+        related: [Percentile, Response Time]
+
+  - name: Tools and Platforms
+    description: Common scalability testing tools and cloud platforms
+    terms:
+      - term: Apache JMeter
+        definition: >-
+          The most widely used open-source load testing tool. Provides a GUI
+          for test plan creation and supports HTTP, JDBC, JMS, LDAP, and more.
+          Extensible through plugins. Used as the underlying engine for
+          Azure Load Testing and BlazeMeter.
+        url: https://jmeter.apache.org/
+        related: [BlazeMeter, Azure Load Testing]
+
+      - term: k6
+        definition: >-
+          An open-source load testing tool using JavaScript/TypeScript test
+          scripts with a CLI-first design. Provides a developer-friendly API
+          for complex test scenarios. Cloud execution available via Grafana k6 Cloud.
+        url: https://k6.io/
+        related: [Grafana k6 Cloud]
+
+      - term: Gatling
+        definition: >-
+          A high-performance open-source load testing framework using a
+          Scala/Java/Kotlin DSL. Built on Akka/Netty for efficient concurrency.
+          Produces detailed HTML reports with real-time charts.
+        url: https://gatling.io/
+
+      - term: Locust
+        definition: >-
+          A Python-based distributed load testing framework where test scenarios
+          are defined as Python classes. Supports distributed execution and
+          provides a real-time web UI and REST API for control.
+        url: https://locust.io/
+
+      - term: BlazeMeter
+        definition: >-
+          A cloud-based load testing platform supporting JMeter, Gatling,
+          Locust, Selenium, and custom scripts. Provides distributed execution,
+          real-time monitoring, and CI/CD integrations.
+        url: https://blazemeter.com/
+
+      - term: Azure Load Testing
+        definition: >-
+          Microsoft Azure's fully managed cloud load testing service based on
+          Apache JMeter. Integrates with Azure DevOps, GitHub Actions, and
+          Azure Monitor for end-to-end performance testing pipelines.
+        url: https://learn.microsoft.com/en-us/azure/load-testing/
+
+  - name: Concepts and Best Practices
+    description: Methodology and interpretation concepts for scalability testing
+    terms:
+      - term: SLA (Service Level Agreement)
+        definition: >-
+          Performance commitments defined for a system, such as "p95 response
+          time < 500ms" or "error rate < 1%". Load tests validate whether
+          the system meets its SLA under target load conditions.
+        acronym: SLA
+
+      - term: SLO (Service Level Objective)
+        definition: >-
+          An internal target for service performance, typically more stringent
+          than the customer-facing SLA to provide a buffer. Used to trigger
+          alerts and remediation before SLA breach occurs.
+        acronym: SLO
+
+      - term: Breaking Point
+        definition: >-
+          The load level at which a system's performance degrades beyond
+          acceptable SLA thresholds or failures begin occurring. The goal
+          of stress and breakpoint testing is to identify this ceiling.
+        related: [Stress Test, Capacity]
+
+      - term: Bottleneck
+        definition: >-
+          A component or resource that limits overall system throughput.
+          Common bottlenecks include database connections, CPU, memory,
+          network bandwidth, external API rate limits, and thread pool sizes.
+        related: [Profiling, Capacity]
+
+      - term: Virtual User (VU)
+        definition: >-
+          A simulated user thread executing a test script. Each VU makes
+          requests, processes responses, and optionally applies think time
+          delays. VU count determines the concurrency level of the test.
+        related: [Concurrent Users, Throughput]
+
+      - term: Warm-Up
+        definition: >-
+          An initial period of low-intensity load before ramping to full test
+          load, allowing JVM JIT compilation, connection pool establishment,
+          and cache warming to complete before measurements begin.
+        related: [Ramp-Up]
+
+      - term: Percentile Budget
+        definition: >-
+          The performance headroom allocated to specific percentile bands to
+          maintain overall user experience targets. For example, reserving
+          "p95 < 500ms" while accepting "p99 < 2000ms".
+
+      - term: Baseline Test
+        definition: >-
+          A reference load test run at a known load level, used for comparison
+          against subsequent tests to detect performance regressions after
+          code changes or infrastructure modifications.
+        related: [Performance Regression]
+
+      - term: Performance Regression
+        definition: >-
+          A degradation in measured performance metrics (response time, throughput,
+          error rate) relative to a previously established baseline. CI/CD
+          pipelines compare test results against baselines to catch regressions.
