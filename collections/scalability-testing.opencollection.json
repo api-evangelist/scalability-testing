@@ -1,0 +1,207 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grafana Cloud k6 REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all available projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.k6.io/cloud/v6/projects",
+            "headers": [
+              {
+                "name": "X-Stack-Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all available projects"
+        },
+        {
+          "info": {
+            "name": "Create a new project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.k6.io/cloud/v6/projects",
+            "headers": [
+              {
+                "name": "X-Stack-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new project"
+        },
+        {
+          "info": {
+            "name": "Retrieve a single project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.k6.io/cloud/v6/projects/:id",
+            "headers": [
+              {
+                "name": "X-Stack-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single project"
+        },
+        {
+          "info": {
+            "name": "Update a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.k6.io/cloud/v6/projects/:id",
+            "headers": [
+              {
+                "name": "X-Stack-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a project"
+        },
+        {
+          "info": {
+            "name": "Delete a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.k6.io/cloud/v6/projects/:id",
+            "headers": [
+              {
+                "name": "X-Stack-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a project"
+        },
+        {
+          "info": {
+            "name": "Fetch limits for a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.k6.io/cloud/v6/projects/:id/limits",
+            "headers": [
+              {
+                "name": "X-Stack-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Fetch limits for a project"
+        },
+        {
+          "info": {
+            "name": "Update limits for a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.k6.io/cloud/v6/projects/:id/limits",
+            "headers": [
+              {
+                "name": "X-Stack-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update limits for a project"
+        },
+        {
+          "info": {
+            "name": "List limits for all projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.k6.io/cloud/v6/project-limits",
+            "headers": [
+              {
+                "name": "X-Stack-Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List limits for all projects"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
