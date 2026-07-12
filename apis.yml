@@ -137,6 +137,10 @@ apis:
         url: https://github.com/gatling/gatling
 
 common:
+  - type: DomainSecurity
+    url: security/scalability-testing-domain-security.yml
+  - type: Authentication
+    url: authentication/scalability-testing-authentication.yml
   - type: Website
     url: https://k6.io/
   - type: GitHub
