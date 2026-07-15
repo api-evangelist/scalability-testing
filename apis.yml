@@ -137,6 +137,8 @@ apis:
         url: https://github.com/gatling/gatling
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/scalability-testing-agentic-access.yml
   - type: DomainSecurity
     url: security/scalability-testing-domain-security.yml
   - type: Authentication
