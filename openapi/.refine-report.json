@@ -1,0 +1,14 @@
+{
+  "provider": "scalability-testing",
+  "sources": [
+    "scalability-testing-projects-api-openapi.yml"
+  ],
+  "outputs": [
+    "scalability-testing-projects-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

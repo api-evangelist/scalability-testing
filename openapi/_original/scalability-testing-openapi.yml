@@ -1,0 +1,141 @@
+openapi: 3.1.0
+info:
+  title: Grafana Cloud k6 REST API
+  description: |
+    The Grafana Cloud k6 REST API enables programmatic access to k6 cloud
+    performance testing resources — projects, load tests, test runs, schedules,
+    load zones, and metrics. Authentication uses a bearer token (Personal API
+    token or Grafana Stack API token) combined with an `X-Stack-Id` header
+    identifying the Grafana stack scope. This OpenAPI is hand-derived from the
+    public reference at grafana.com/docs and is intended as an API Evangelist
+    research artifact for the scalability-testing topic.
+  version: "1.0.0"
+  contact:
+    name: API Evangelist
+    url: https://apievangelist.com
+servers:
+  - url: https://api.k6.io/cloud/v6
+    description: Grafana Cloud k6 production API
+security:
+  - BearerAuth: []
+    StackId: []
+paths:
+  /projects:
+    get:
+      summary: List all available projects
+      operationId: listProjects
+      tags: [Projects]
+      parameters:
+        - $ref: '#/components/parameters/StackIdHeader'
+      responses:
+        '200':
+          description: A page of projects.
+    post:
+      summary: Create a new project
+      operationId: createProject
+      tags: [Projects]
+      parameters:
+        - $ref: '#/components/parameters/StackIdHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '201':
+          description: Project created.
+  /projects/{id}:
+    parameters:
+      - $ref: '#/components/parameters/StackIdHeader'
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Retrieve a single project
+      operationId: getProject
+      tags: [Projects]
+      responses:
+        '200':
+          description: A single project.
+    patch:
+      summary: Update a project
+      operationId: updateProject
+      tags: [Projects]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated project.
+    delete:
+      summary: Delete a project
+      operationId: deleteProject
+      tags: [Projects]
+      responses:
+        '204':
+          description: Project deleted.
+  /projects/{id}/limits:
+    parameters:
+      - $ref: '#/components/parameters/StackIdHeader'
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Fetch limits for a project
+      operationId: getProjectLimits
+      tags: [Projects]
+      responses:
+        '200':
+          description: Project limits.
+    patch:
+      summary: Update limits for a project
+      operationId: updateProjectLimits
+      tags: [Projects]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated limits.
+  /project-limits:
+    get:
+      summary: List limits for all projects
+      operationId: listProjectLimits
+      tags: [Projects]
+      parameters:
+        - $ref: '#/components/parameters/StackIdHeader'
+      responses:
+        '200':
+          description: Limits across projects.
+components:
+  parameters:
+    StackIdHeader:
+      name: X-Stack-Id
+      in: header
+      required: true
+      description: Grafana stack instance ID.
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: GrafanaToken
+    StackId:
+      type: apiKey
+      in: header
+      name: X-Stack-Id
