@@ -32,7 +32,7 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/scalability-testing/refs/heads/main/apis.yml
 created: '2024-01-15'
 modified: '2026-05-02'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: scalability-testing:k6-cloud-api
   name: Grafana k6 Cloud API
