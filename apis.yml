@@ -76,6 +76,11 @@ apis:
   - Apache
   - JMeter
   - Load Testing
+  - Open-Source
+  tags_raw:
+  - Apache
+  - JMeter
+  - Load Testing
   - Open Source
   properties:
   - type: Documentation
@@ -91,6 +96,11 @@ apis:
   humanURL: https://locust.io/
   baseURL: http://localhost:8089
   tags:
+  - Load Testing
+  - Locust
+  - Open-Source
+  - Python
+  tags_raw:
   - Load Testing
   - Locust
   - Open Source
@@ -111,6 +121,12 @@ apis:
   - Gatling
   - Java
   - Load Testing
+  - Open-Source
+  - Scala
+  tags_raw:
+  - Gatling
+  - Java
+  - Load Testing
   - Open Source
   - Scala
   properties:
@@ -124,6 +140,8 @@ apis:
   humanURL: https://grafana.com/docs/grafana-cloud/testing/k6/
   baseURL: https://api.k6.io/v3
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
