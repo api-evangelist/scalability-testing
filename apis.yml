@@ -10,14 +10,21 @@ description: >-
 type: Index
 deliveryModel:
   model: unknown
-  open_source: false
+  license_evidence:
+    not_product:
+    - apache/jmeter
+    - gatling/gatling
+    - grafana/k6
+    - locustio/locust
+  open_source: unknown
   commercial: false
   callable_host: true
   label: Delivery model not determined — needs a product licence on record
   confidence: low
   source:
   - openapi
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -89,12 +96,13 @@ apis:
   - Apache
   - JMeter
   - Load Testing
-  - Open-Source
+  - Open Source
   tags_raw:
   - Apache
   - JMeter
   - Load Testing
   - Open Source
+  - Open-Source
   properties:
   - type: Documentation
     url: https://jmeter.apache.org/usermanual/index.html
@@ -111,13 +119,14 @@ apis:
   tags:
   - Load Testing
   - Locust
-  - Open-Source
+  - Open Source
   - Python
   tags_raw:
   - Load Testing
   - Locust
   - Open Source
   - Python
+  - Open-Source
   properties:
   - type: Documentation
     url: https://docs.locust.io/en/stable/
@@ -134,7 +143,7 @@ apis:
   - Gatling
   - Java
   - Load Testing
-  - Open-Source
+  - Open Source
   - Scala
   tags_raw:
   - Gatling
@@ -142,6 +151,7 @@ apis:
   - Load Testing
   - Open Source
   - Scala
+  - Open-Source
   properties:
   - type: Documentation
     url: https://docs.gatling.io/
